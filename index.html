@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Similar Tastes Nashville</title>
+  <link rel="stylesheet" type="text/css" href="lib/bootstrap/dist/css/bootstrap.css">
+</head>
+<body>
+
+
+
+  <!-- setup angular app -->
+  <main>
+    <div ng-app="similarTastesApp">
+      <!-- setup ng-view -->
+      <div ng-view></div>
+
+    </div>
+  </main>
+<!-- end of angular app -->
+
+
+  <script src="lib/angular/angular.js"></script>
+  <script src="lib/angular-route/angular-route.js"></script>
+  <script src="lib/jquery/dist/jquery.min.js"></script>
+  <script src="lib/bootstrap/dist/js/bootstrap.min.js"></script>
+
+  <script src="app/configAng.js"></script>
+  <script src="app/main.js"></script>
+
+  <script src="app/controllers/aboutCtrl.js"></script>
+  <script src="app/controllers/formCtrl.js"></script>
+  <script src="app/controllers/homeCtrl.js"></script>
+  <script src="app/controllers/restaurantCtrl.js"></script>
+
+</body>
+</html>

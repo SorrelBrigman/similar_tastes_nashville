@@ -1,0 +1,23 @@
+{
+  "name": "similar_tastes_nashville",
+  "homepage": "https://github.com/SorrelBrigman/similar_tastes_nashville",
+  "authors": [
+    "Sorrel Brigman <sorrel.k@gmail.com>"
+  ],
+  "description": "UI, finds reviews based on user input",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.2.1",
+    "bootstrap": "^3.3.7",
+    "angular": "^1.6.4",
+    "angular-route": "^1.6.4"
+  }
+}

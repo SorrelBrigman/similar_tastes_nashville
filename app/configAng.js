@@ -11,7 +11,7 @@ app.config(($routeProvider)=> {
       //use the partial "home"
       templateUrl : "partials/home.html"
     })
-    .when("/input", {
+    .when("/recommendations", {
       // use the add product ctrl
       controller: "formCtrl",
       //use the partial "addProduct"

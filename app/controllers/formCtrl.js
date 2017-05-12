@@ -28,7 +28,14 @@ app.controller('formCtrl', function($scope, getRestaurantsFactory, getReviewsFac
     console.log("user", $scope.user);
     getReviewsFactory.getReviewPrediction($scope.user)
     .then((data) => {
-      console.log("reviews returned",data)
+      console.log("reviews returned",data);
+      $scope.reviewed = {
+        name: 'Bob',
+        number: data.reviews.length,
+        averageRating: parseInt(data.averageRating),
+        id: data.reviews[0].restaurant_id
+      }
+
     })
   }
 

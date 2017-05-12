@@ -49,13 +49,13 @@
         <div class="radio">
           <h3>Do you passionately love it, or passionately hate it?</h3>
           <label>
-            <input type="radio" name="rating" id="loveIt" value=">=4" checked>
+            <input type="radio" name="rating" id="loveIt" ng-model="user.rating" value=">=4" checked>
             I love it
           </label>
         </div>
         <div class="radio">
           <label>
-            <input type="radio" name="rating" id="hateIt" value="<=2">
+            <input type="radio" name="rating" id="hateIt" ng-model="user.rating" value="<=2">
             I hate it
           </label>
         </div>

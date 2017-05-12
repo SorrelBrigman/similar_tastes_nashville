@@ -39,4 +39,14 @@ app.controller('formCtrl', function($scope, getRestaurantsFactory, getReviewsFac
     })
   }
 
+  $scope.getRecommendations = () => {
+    getReviewsFactory.getRecommendedRestaurants($scope.user)
+    .then((data) => {
+      console.log("data from controller", data)
+      let sortedReviews = getReviewsFactory.sortByRestaurant(data);
+      $scope.filteredReviews = getReviewsFactory.removeDuplicates(sortedReviews, $scope.user.restaurant_id);
+      console.log("filteredReviews", $scope.filteredReviews);
+    })
+  }
+
 });

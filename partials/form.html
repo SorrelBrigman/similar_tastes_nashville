@@ -23,10 +23,10 @@
 
   <div class="starter-template">
     <h1>Declare Your Tastes</h1>
-    <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
+    <p class="lead">Tell us about a restaurant you feel passionately about.<br> We'll find users with similar tastes to hook you up with meaningful reviews and recommendations</p>
   </div>
   <div>
-    <form ng-submit="predictReview()">
+    <form >
 
       <!-- <fieldset>
         <div class="form-group">
@@ -62,9 +62,9 @@
       </fieldset>
 
       <fieldset>
-        <button type="button" class="btn btn-primary">Recommend Restaurants I'd like</button>
+        <button type="submit" class="btn btn-primary" ng-click="getRecommendations()">Recommend Restaurants I'd like</button>
 
-      <button type="button" class="btn btn-success">Predict My Review of Another Restaurant</button>
+      <!-- <button type="button" class="btn btn-success">Predict My Review of Another Restaurant</button> -->
       </fieldset>
       <fieldset>
         <div class="form-group">
@@ -74,7 +74,7 @@
               <option ng-repeat="restaurant in restaurants" value={{resaurant.id}}>{{restaurant.name}}</option> -->
           </select>
         </div>
-        <button type="submit" class="btn btn-success" ng-click=>Predict My Review of Another Restaurant</button>
+        <button type="submit" class="btn btn-success" ng-click="predictReview()">Predict My Review of Another Restaurant</button>
 
 
     </form>
@@ -86,7 +86,19 @@
       <div class="container">
         <h1>{{reviewed.name}}</h1>
         <p>Based on {{reviewed.number}} users with similar tastes, the average review for {{reviewed.name}} is {{reviewed.averageRating}} out of 5 stars.</p>
-        <p><a class="btn btn-primary" href=`#!/restaurants/{{reviewed.id}}` role="button">{{reviewed.name}} Details</a></p>
+        <p><a class="btn btn-primary" href=/restaurants/{{reviewed.id}} role="button">{{reviewed.name}} Details</a></p>
+      </div>
+    </div>
+
+</div>
+
+
+  <div class="jumbotron" ng-if=filteredReviews>
+      <div class="container">
+        <h3>Here are some restaurant folks with similar tastes have enjoyed:</h3>
+        <div ng-repeat="review in filteredReviews">
+          <p>{{review.name}} <a class="btn btn-primary" href=#!/restaurants/{{review.restaurant_id}} role="button">More Info</a></p>
+        </div>
       </div>
     </div>
 

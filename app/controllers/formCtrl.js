@@ -27,6 +27,9 @@ app.controller('formCtrl', function($scope, getRestaurantsFactory, getReviewsFac
   $scope.predictReview = () => {
     console.log("user", $scope.user);
     getReviewsFactory.getReviewPrediction($scope.user)
+    .then((data) => {
+      console.log("reviews returned",data)
+    })
   }
 
 });

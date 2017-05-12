@@ -15,8 +15,22 @@ app.factory('getReviewsFactory', function($http){
       })
       //turn the data object into an array
       .then((e)=>{
-        let filteredReviews = e;
-        return filteredReviews;
+        //parse out reviews
+        let filteredReviews = e.rows;
+        let findAverageReview = (reviews) => {
+          let reviewTotal = 0;
+          for(let i = 0; i < reviews.length; i++) {
+            reviewTotal = reviewTotal + parseInt(reviews[i].rating)
+          }
+          return (reviewTotal/(reviews.length + 1))
+        }
+        let averageReview =  findAverageReview(filteredReviews);
+        console.log("averageReview", parseInt(averageReview))
+        let reviewResponse = {
+          reviews: filteredReviews,
+          averageRating: averageReview
+        }
+        return reviewResponse;
       });//end of then
     }, //end of getAllRestaurants()
 

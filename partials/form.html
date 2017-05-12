@@ -82,7 +82,7 @@
   </div>
 
 
-  <div class="jumbotron">
+  <div class="jumbotron" ng-if=reviewed>
       <div class="container">
         <h1>{{reviewed.name}}</h1>
         <p>Based on {{reviewed.number}} users with similar tastes, the average review for {{reviewed.name}} is {{reviewed.averageRating}} out of 5 stars.</p>

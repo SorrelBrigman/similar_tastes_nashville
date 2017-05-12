@@ -30,7 +30,7 @@ app.controller('formCtrl', function($scope, getRestaurantsFactory, getReviewsFac
     .then((data) => {
       console.log("reviews returned",data);
       $scope.reviewed = {
-        name: 'Bob',
+        name: data.reviews[0].name,
         number: data.reviews.length,
         averageRating: parseInt(data.averageRating),
         id: data.reviews[0].restaurant_id

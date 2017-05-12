@@ -39,26 +39,23 @@
       <fieldset>
         <div class="form-group">
           <label for="restaurants">Select a restaurant you feel passionately about:</label>
-          <select class="form-control">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
+          <select class="form-control" >
+            <option disabled selected>Select a Restaurant</option>
+            <option ng-repeat="restaurant in restaurants" value={{resaurant.id}}>{{restaurant.name}}</option>
           </select>
       </fieldset>
 
       <fieldset>
         <div class="radio">
-          <h3>Do you passionately love it, or hate it?</h3>
+          <h3>Do you passionately love it, or passionately hate it?</h3>
           <label>
-            <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+            <input type="radio" name="rating" id="loveIt" value=">=4" checked>
             I love it
           </label>
         </div>
         <div class="radio">
           <label>
-            <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+            <input type="radio" name="rating" id="hateIt" value="<=2">
             I hate it
           </label>
         </div>
@@ -72,7 +69,10 @@
       <fieldset>
         <div class="form-group">
             <label for="query">Enter the restaurant you'd like a review prediction for</label>
-            <input type="text" class="form-control" name="query" id="query" placeholder="Start typing something to search...">
+            <select class="form-control" >
+              <option disabled selected>Select a Restaurant</option>
+              <option ng-repeat="restaurant in restaurants" value={{resaurant.id}}>{{restaurant.name}}</option>
+          </select>
         </div>
         <button type="submit" class="btn btn-success">Predict My Review of Another Restaurant</button>
 

@@ -15,6 +15,18 @@ app.factory('getRestaurantsFactory', function($http){
         return allRestaurants;
       });//end of then
     }, //end of getAllRestaurants()
+    getSingleRestaurant : (id) => {
+      //get single restaurant info
+      return $http
+      .get(`http://localhost:3000/api/v1/restaurants/${id}`)
+      .then((e) => {
+        return e.data
+      })
+      .then((e) => {
+        console.log("second e", e)
+        return e;
+      })
+    }
 
   };//end of factory object
 });//end of factory

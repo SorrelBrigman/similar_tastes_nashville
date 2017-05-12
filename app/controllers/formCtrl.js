@@ -1,5 +1,12 @@
 app.controller('formCtrl', function($scope, getRestaurantsFactory, getReviewsFactory){
   console.log("hello from formCtrl")
+
+      $('.love-or-hate').hide();
+      $('.choose-type').hide();
+      $('.second-Rest').hide();
+
+
+
   getRestaurantsFactory.getAllRestaurants()
   .then((restaurants) => {
 
@@ -26,6 +33,8 @@ app.controller('formCtrl', function($scope, getRestaurantsFactory, getReviewsFac
 
   $scope.predictReview = () => {
     console.log("user", $scope.user);
+    $('.second-Rest').hide();
+    $('.tastes').hide();
     getReviewsFactory.getReviewPrediction($scope.user)
     .then((data) => {
       console.log("reviews returned",data);
@@ -40,6 +49,8 @@ app.controller('formCtrl', function($scope, getRestaurantsFactory, getReviewsFac
   }
 
   $scope.getRecommendations = () => {
+    $('.choose-type').hide();
+    $('.tastes').hide();
     getReviewsFactory.getRecommendedRestaurants($scope.user)
     .then((data) => {
       console.log("data from controller", data)
@@ -47,6 +58,21 @@ app.controller('formCtrl', function($scope, getRestaurantsFactory, getReviewsFac
       $scope.filteredReviews = getReviewsFactory.removeDuplicates(sortedReviews, $scope.user.restaurant_id);
       console.log("filteredReviews", $scope.filteredReviews);
     })
+  }
+
+  $scope.gaveRestaurant = () => {
+    $('.first-restaurant').hide();
+    $('.love-or-hate').show()
+  }
+
+  $scope.loveOrHate = () => {
+    $('.love-or-hate').hide()
+    $('.choose-type').show()
+  }
+
+  $scope.choosePredict = () => {
+    $('.choose-type').hide();
+    $('.second-Rest').show();
   }
 
 });

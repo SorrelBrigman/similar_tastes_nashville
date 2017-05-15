@@ -1,4 +1,4 @@
-app.controller('formCtrl', function($scope, getRestaurantsFactory, getReviewsFactory, $timeout){
+app.controller('formCtrl', function($scope, getRestaurantsFactory, getReviewsFactory, $timeout, $destroy){
 
 
       // $('.love-or-hate').hide();
@@ -41,7 +41,7 @@ app.controller('formCtrl', function($scope, getRestaurantsFactory, getReviewsFac
     getReviewsFactory.getReviewPrediction($scope.user)
     .then((data) => {
       if (data.reviews[0] === undefined) {
-        $scope.errorMessage = "We're sorry, but no one with similar tastes has been there yet.  Try it out, you'll be a trend setter."
+        $scope.errorMessage = "We're sorry, but no one with similar tastes has reviewed there yet.  Try it out, you'll be a trend setter."
           return;
       }
       $scope.reviewed = {
@@ -84,6 +84,13 @@ app.controller('formCtrl', function($scope, getRestaurantsFactory, getReviewsFac
 
   $scope.choosePredict = () => {
     $scope.questionNumber = 4;
+  }
+
+  $scope.back = () => {
+    console.log("Back button");
+    console.log("questionNumber", $scope.questionNumber)
+    // $destroy($scope.errorMessage)
+    $scope.questionNumber = 3;
   }
 
 });

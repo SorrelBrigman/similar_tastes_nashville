@@ -110,7 +110,7 @@
       <div class="container">
         <h1>Bummer!</h1>
         <p>{{errorMessage}}</p>
-        <p><a class="btn btn-primary" href=#!/recommendations role="button">Try Again</a></p>
+        <p><a class="btn btn-primary" href="#!/recommendations" role="button">Try Again</a></p>
       </div>
 
     </div>
@@ -120,10 +120,11 @@
 
   <div class="jumbotron" ng-if=filteredReviews>
       <div class="container">
-        <h3>Here are some restaurant folks with similar tastes have enjoyed:</h3>
+        <h3>Here are some restaurants folks with similar tastes have enjoyed:</h3>
         <div ng-repeat="review in filteredReviews | limitTo:5">
           <p>{{review.name}} <a class="btn btn-primary" href=#!/restaurants/{{review.restaurant_id}} role="button">More Info</a></p>
         </div>
+        <button type="submit" class="btn btn-primary" ng-click="back()">Back</button>
       </div>
     </div>
 

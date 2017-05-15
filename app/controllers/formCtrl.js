@@ -38,6 +38,11 @@ app.controller('formCtrl', function($scope, getRestaurantsFactory, getReviewsFac
     getReviewsFactory.getReviewPrediction($scope.user)
     .then((data) => {
       console.log("reviews returned",data);
+
+      if (data.reviews[0] === undefined) {
+        $scope.errorMessage = "We're sorry, but no one with similar tastes has been there yet.  Try it out, you'll be a trend setter."
+          return;
+      }
       $scope.reviewed = {
         name: data.reviews[0].name,
         number: data.reviews.length,
@@ -61,6 +66,11 @@ app.controller('formCtrl', function($scope, getRestaurantsFactory, getReviewsFac
   }
 
   $scope.gaveRestaurant = () => {
+    if($scope.user.restaurant_id === '') {
+      //inform them to select a restaurant
+      $scope.restaurantmessage = "You must select a restaurant to start"
+      return
+    }
     $('.first-restaurant').hide();
     $('.love-or-hate').show()
   }

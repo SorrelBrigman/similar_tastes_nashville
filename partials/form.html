@@ -38,6 +38,7 @@
 
       <fieldset class="first-restaurant">
         <div class="form-group">
+          <h2 ng-if="restaurantmessage"> {{restaurantmessage}}</h2>
           <label for="restaurants"><h3>Select a restaurant you feel passionately about:</h3></label>
           <select class="form-control" name="restaurant_id" id="restaurant_id" ng-model="user.restaurant_id" ng-options="restaurant.id as restaurant.name for restaurant in restaurants" value={{resaurant.id}}>
           <!--   <option disabled selected>Select a Restaurant</option>
@@ -89,6 +90,18 @@
         <p>Based on {{reviewed.number}} users with similar tastes, the average review for {{reviewed.name}} is {{reviewed.averageRating}} out of 5 stars.</p>
         <p><a class="btn btn-primary" href=#!/restaurants/{{reviewed.id}} role="button">{{reviewed.name}} Details</a></p>
       </div>
+
+    </div>
+
+</div>
+
+  <div class="jumbotron" ng-if=errorMessage>
+      <div class="container">
+        <h1>Bummer!</h1>
+        <p>{{errorMessage}}</p>
+        <p><a class="btn btn-primary" href=#!/recommendations role="button">Try Again</a></p>
+      </div>
+
     </div>
 
 </div>

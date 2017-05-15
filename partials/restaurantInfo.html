@@ -22,8 +22,25 @@
 <div class="container">
 
   <div class="starter-template">
-    <h1>Bootstrap starter template</h1>
-    <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
+    <h1>{{restaurant.name}}</h1>
+    <p class="lead">Type of food: {{restaurant.category_str_list}}<br>Price Range: {{restaurant.price_range}}</p>
+    <p>Nashville Neighborhood: {{restaurant.neighborhood_str_list}}</p>
+    <p>Address:
+      <br>{{restaurant.address_string}}
+      <br>{{restaurant.address_city}}, {{restaurant.address_state}}
+      <br>{{restaurant.address_zip}}
+    </p>
+    <p>Phone: {{restaurant.phone}}</p>
+    <p>Website: <a href=http://{{restaurant.website}}>{{restaurant.website}}</a></p>
+
+    <h5>Hours</h5>
+    <p>Monday: {{restaurant.monday_hours}}</p>
+    <p>Tuesday: {{restaurant.tuesday_hours}}</p>
+    <p>Wednesday: {{restaurant.wednesday_hours}}</p>
+    <p>Thursday: {{restaurant.thursday_hours}}</p>
+    <p>Friday: {{restaurant.friday_hours}}</p>
+    <p>Saturday: {{restaurant.saturday_hours}}</p>
+    <p>Sunday: {{restaurant.sunday_hours}}</p>
   </div>
 
 </div>

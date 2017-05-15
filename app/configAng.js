@@ -17,7 +17,7 @@ app.config(($routeProvider)=> {
       //use the partial "addProduct"
       templateUrl: "partials/form.html"
     })
-    .when("/restaurant", {
+    .when("/restaurants/:restaurant_id", {
       // use the add product ctrl
       controller: "restaurantCtrl",
       //use the partial "addProduct"

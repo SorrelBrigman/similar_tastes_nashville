@@ -21,10 +21,101 @@
 
 <div class="container">
 
-  <div class="starter-template">
-    <h1>Bootstrap starter template</h1>
-    <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
+  <div class="starter-template tastes">
+    <h1>Declare Your Tastes</h1>
+    <p class="lead">Tell us about a restaurant you feel passionately about.<br> We'll find users with similar tastes to hook you up with meaningful reviews and recommendations</p>
   </div>
+  <div>
+    <form >
+
+      <!-- <fieldset>
+        <div class="form-group">
+            <label for="query">Enter a restaurant you feel passionately about:</label>
+            <input type="text" class="form-control" name="query" id="query" placeholder="Start typing something to search...">
+        </div>
+         <button type="submit" class="btn btn-primary">Search Restaurants</button>
+      </fieldset> -->
+
+      <fieldset class="first-restaurant">
+        <div class="form-group">
+          <h2 ng-if="restaurantmessage"> {{restaurantmessage}}</h2>
+          <label for="restaurants"><h3>Select a restaurant you feel passionately about:</h3></label>
+          <select class="form-control" name="restaurant_id" id="restaurant_id" ng-model="user.restaurant_id" ng-options="restaurant.id as restaurant.name for restaurant in restaurants" value={{resaurant.id}}>
+          <!--   <option disabled selected>Select a Restaurant</option>
+            <option ng-options="restaurant.id as restaurant.name for restaurant in restaurants" value={{resaurant.id}}>{{restaurant.name}}</option> -->
+          </select>
+          <button type="button" class="btn btn-primary" ng-click="gaveRestaurant()">Set Restaurant</button>
+      </fieldset>
+
+      <fieldset class="love-or-hate">
+        <div class="radio">
+          <h3>Do you passionately love it, or passionately hate it?</h3>
+          <label>
+            <input type="radio" name="rating" id="loveIt" ng-model="user.rating" value=">=4" ng-click="loveOrHate()">
+            I love it
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input type="radio" name="rating" id="hateIt" ng-model="user.rating" value="<=2" ng-click="loveOrHate()">
+            I hate it
+          </label>
+        </div>
+      </fieldset>
+
+      <fieldset class="choose-type">
+        <button type="submit" class="btn btn-primary" ng-click="getRecommendations()">Recommend Restaurants I'd like</button>
+
+      <button type="button" class="btn btn-success" ng-click="choosePredict()">Predict My Review of Another Restaurant</button>
+      </fieldset>
+      <fieldset class="second-Rest">
+        <div class="form-group">
+            <label for="query">Enter the restaurant you'd like a review prediction for</label>
+            <select class="form-control" ng-model="user.restaurant_to_compare" name="restaurant_to_compare" id="restaurant_to_compare" ng-model="user.restaurant_id" ng-options="restaurant.id as restaurant.name for restaurant in restaurants" value={{resaurant.id}}>
+              <!-- <option disabled selected>Select a Restaurant</option>
+              <option ng-repeat="restaurant in restaurants" value={{resaurant.id}}>{{restaurant.name}}</option> -->
+          </select>
+        </div>
+        <button type="submit" class="btn btn-success" ng-click="predictReview()">Predict My Review of Another Restaurant</button>
+
+
+    </form>
+
+  </div>
+
+
+  <div class="jumbotron" ng-if=reviewed>
+      <div class="container">
+        <h1>{{reviewed.name}}</h1>
+        <p>Based on {{reviewed.number}} users with similar tastes, the average review for {{reviewed.name}} is {{reviewed.averageRating}} out of 5 stars.</p>
+        <p><a class="btn btn-primary" href=#!/restaurants/{{reviewed.id}} role="button">{{reviewed.name}} Details</a></p>
+      </div>
+
+    </div>
+
+</div>
+
+  <div class="jumbotron" ng-if=errorMessage>
+      <div class="container">
+        <h1>Bummer!</h1>
+        <p>{{errorMessage}}</p>
+        <p><a class="btn btn-primary" href=#!/recommendations role="button">Try Again</a></p>
+      </div>
+
+    </div>
+
+</div>
+
+
+  <div class="jumbotron" ng-if=filteredReviews>
+      <div class="container">
+        <h3>Here are some restaurant folks with similar tastes have enjoyed:</h3>
+        <div ng-repeat="review in filteredReviews">
+          <p>{{review.name}} <a class="btn btn-primary" href=#!/restaurants/{{review.restaurant_id}} role="button">More Info</a></p>
+        </div>
+      </div>
+    </div>
+
 </div>
 
 <footer class="footer">

@@ -58,7 +58,11 @@ app.controller('formCtrl', function($scope, getRestaurantsFactory, getReviewsFac
     $('.tastes').hide();
     getReviewsFactory.getRecommendedRestaurants($scope.user)
     .then((data) => {
-      console.log("data from controller", data)
+      console.log("data from controller", data);
+      if (data.length === 0) {
+        $scope.errorMessage = "Believe it or not, but you're a unique snowflake, and your tastes are all your own.  Come back again soon, and hopefully your taste-twin will have recommendations for you the next time you stop through."
+          return;
+      }
       let sortedReviews = getReviewsFactory.sortByRestaurant(data);
       $scope.filteredReviews = getReviewsFactory.removeDuplicates(sortedReviews, $scope.user.restaurant_id);
       console.log("filteredReviews", $scope.filteredReviews);

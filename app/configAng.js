@@ -1,5 +1,5 @@
 //assign the angular module to the var app
-var app = angular.module("similarTastesApp", ['ngRoute']);
+var app = angular.module("similarTastesApp", ['ngRoute', 'localytics.directives']);
 
 //configure "app" with routeProvider
 app.config(($routeProvider)=> {

@@ -47,6 +47,7 @@ app.factory('getReviewsFactory', function($http){
       .then((e)=>{
         //parse out reviews
         let restReviews = e.rows;
+        console.log("all reviews", restReviews);
         return restReviews;
       });//end of then
     }, //end of get Recommedned Restaurants
@@ -58,6 +59,7 @@ app.factory('getReviewsFactory', function($http){
           return 1;
         return 0;
       })
+
       return reviews;
     },
     removeDuplicates : (reviews, restaurant) => {
@@ -76,6 +78,37 @@ app.factory('getReviewsFactory', function($http){
         }
       }
       return uniqueRestaurants
+    },
+    quantifyReviews : (reviews, restaurant) => {
+      let ratedRestaurants = []
+      // if (reviews[0].restaurant_id !== restaurant) {
+      //   uniqueRestaurants.push(reviews[0]);
+      // }
+      for(let i = 1; i < (reviews.length + 1); i++) {
+        if(reviews[i] === undefined) {
+
+        } else if(reviews[i].restaurant_id === reviews[i-1].restaurant_id) {
+          reviews[i].rating = reviews[i].rating + reviews[i-1].rating;
+        }
+        else if (reviews[i-1].restaurant_id === restaurant){
+
+        } else {
+        console.log(reviews[i-1]);
+        ratedRestaurants.push(reviews[i-1])
+        }
+      }
+      return ratedRestaurants
+    },
+    sortByHighestRated : (reviews) => {
+        reviews.sort((a,b) => {
+        if(a.rating > b.rating)
+          return -1;
+        if (a.rating < b.rating)
+          return 1;
+        return 0;
+      })
+        console.log("reviews by rating", reviews)
+      return reviews;
     }
 
 

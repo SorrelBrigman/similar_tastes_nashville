@@ -68,7 +68,8 @@ app.controller('formCtrl', function($scope, getRestaurantsFactory, getReviewsFac
           return;
       }
       let sortedReviews = getReviewsFactory.sortByRestaurant(data);
-      $scope.filteredReviews = getReviewsFactory.removeDuplicates(sortedReviews, $scope.user.restaurant_id);
+      let ratedReviews = getReviewsFactory.quantifyReviews(sortedReviews, $scope.user.restaurant_id);
+      $scope.filteredReviews = getReviewsFactory.sortByHighestRated(ratedReviews);
       console.log("filteredReviews", $scope.filteredReviews);
     })
   }

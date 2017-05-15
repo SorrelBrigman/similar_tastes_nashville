@@ -121,7 +121,7 @@
   <div class="jumbotron" ng-if=filteredReviews>
       <div class="container">
         <h3>Here are some restaurant folks with similar tastes have enjoyed:</h3>
-        <div ng-repeat="review in filteredReviews">
+        <div ng-repeat="review in filteredReviews | limitTo:5">
           <p>{{review.name}} <a class="btn btn-primary" href=#!/restaurants/{{review.restaurant_id}} role="button">More Info</a></p>
         </div>
       </div>

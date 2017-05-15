@@ -4,13 +4,13 @@ app.factory('getReviewsFactory', function($http){
       //get all the products from api
       let restaurant_id = user.restaurant_id;
       let rating = user.rating;
-      console.log("rating", user.rating)
+
       let restaurant_to_compare = user.restaurant_to_compare;
       return $http
       .get(`http://localhost:3000/api/v1/reviews/filtered?restaurant_id=${restaurant_id}&rating=${rating}&restaurant_to_compare=${restaurant_to_compare}`)
       //parse the return from api, just returning the data object
       .then((e)=>{
-        console.log("e in reviews factory", e)
+
         return e.data;
       })
       //turn the data object into an array
@@ -25,7 +25,7 @@ app.factory('getReviewsFactory', function($http){
           return (reviewTotal/(reviews.length + 1))
         }
         let averageReview =  findAverageReview(filteredReviews);
-        console.log("averageReview", parseInt(averageReview))
+
         let reviewResponse = {
           reviews: filteredReviews,
           averageRating: averageReview
@@ -47,7 +47,6 @@ app.factory('getReviewsFactory', function($http){
       .then((e)=>{
         //parse out reviews
         let restReviews = e.rows;
-        console.log("all reviews", restReviews);
         return restReviews;
       });//end of then
     }, //end of get Recommedned Restaurants
@@ -73,7 +72,7 @@ app.factory('getReviewsFactory', function($http){
         else if (reviews[i].restaurant_id === restaurant){
 
         }else {
-        console.log(reviews[i]);
+
         uniqueRestaurants.push(reviews[i])
         }
       }
@@ -93,7 +92,6 @@ app.factory('getReviewsFactory', function($http){
         else if (reviews[i-1].restaurant_id === restaurant){
 
         } else {
-        console.log(reviews[i-1]);
         ratedRestaurants.push(reviews[i-1])
         }
       }
@@ -107,7 +105,7 @@ app.factory('getReviewsFactory', function($http){
           return 1;
         return 0;
       })
-        console.log("reviews by rating", reviews)
+
       return reviews;
     }
 

@@ -6,7 +6,7 @@ app.factory('getRestaurantsFactory', function($http){
       .get('http://localhost:3000/api/v1/restaurants')
       //parse the return from api, just returning the data object
       .then((e)=>{
-        console.log("e in restaurants factory", e)
+
         return e.data;
       })
       //turn the data object into an array
@@ -23,7 +23,7 @@ app.factory('getRestaurantsFactory', function($http){
         return e.data
       })
       .then((e) => {
-        console.log("second e", e)
+
         return e;
       })
     }

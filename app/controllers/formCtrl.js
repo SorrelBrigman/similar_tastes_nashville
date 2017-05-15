@@ -1,12 +1,12 @@
-app.controller('formCtrl', function($scope, getRestaurantsFactory, getReviewsFactory){
+app.controller('formCtrl', function($scope, getRestaurantsFactory, getReviewsFactory, $timeout){
   console.log("hello from formCtrl")
 
-      $('.love-or-hate').hide();
-      $('.choose-type').hide();
-      $('.second-Rest').hide();
+      // $('.love-or-hate').hide();
+      // $('.choose-type').hide();
+      // $('.second-Rest').hide();
 
-
-
+      $scope.questionNumber = 1;
+      console.log("questionNumber", $scope.questionNumber)
   getRestaurantsFactory.getAllRestaurants()
   .then((restaurants) => {
 
@@ -20,6 +20,10 @@ app.controller('formCtrl', function($scope, getRestaurantsFactory, getReviewsFac
     return 0;
   })
     $scope.restaurants = restaurants;
+
+    //  $timeout(function () {
+    //  $("select").chosen({no_results_text: "Oops, nothing found!"});
+    // }, 0, false);
   });
 
 
@@ -70,23 +74,24 @@ app.controller('formCtrl', function($scope, getRestaurantsFactory, getReviewsFac
   }
 
   $scope.gaveRestaurant = () => {
+    console.log("user info", $scope.user)
     if($scope.user.restaurant_id === '') {
       //inform them to select a restaurant
       $scope.restaurantmessage = "You must select a restaurant to start"
       return
     }
-    $('.first-restaurant').hide();
-    $('.love-or-hate').show()
+      $scope.questionNumber = 2;
+      console.log("questionNumber", $scope.questionNumber)
   }
 
   $scope.loveOrHate = () => {
-    $('.love-or-hate').hide()
-    $('.choose-type').show()
+    $scope.questionNumber = 3;
+    console.log("questionNumber", $scope.questionNumber)
   }
 
   $scope.choosePredict = () => {
-    $('.choose-type').hide();
-    $('.second-Rest').show();
+    $scope.questionNumber = 4;
+    console.log("questionNumber", $scope.questionNumber)
   }
 
 });

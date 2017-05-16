@@ -1,7 +1,7 @@
 app.factory('getRestaurantsFactory', function($http){
   return {
     getAllRestaurants : () => {
-      //get all the products from api
+      //get all the restaurantss from api
       return $http
       .get('http://localhost:3000/api/v1/restaurants')
       //parse the return from api, just returning the data object

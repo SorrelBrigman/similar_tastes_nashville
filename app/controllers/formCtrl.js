@@ -1,4 +1,4 @@
-app.controller('formCtrl', function($scope, getRestaurantsFactory, getReviewsFactory, $timeout, ){
+app.controller('formCtrl', function($scope, getRestaurantsFactory, getReviewsFactory, $timeout, userFactory){
 
 
       // $('.love-or-hate').hide();
@@ -20,24 +20,39 @@ app.controller('formCtrl', function($scope, getRestaurantsFactory, getReviewsFac
   })
     $scope.restaurants = restaurants;
 
-    //  $timeout(function () {
-    //  $("select").chosen({no_results_text: "Oops, nothing found!"});
-    // }, 0, false);
   });
 
+  let currentUser = userFactory.getUser()
 
-  $scope.user = {
-    restaurant_id: '',
-    rating: '',
-    restaurant_to_compare: ''
+  // console.log("the currentUser", currentUser);
+
+  if (currentUser.set === false) {
+    $scope.user = {
+      restaurant_id: '',
+      rating: '',
+      restaurant_to_compare: ''
+    }
+  } else {
+    $scope.user = {
+      restaurant_id: currentUser.restaurant_id,
+      rating: currentUser.rating,
+      restaurant_to_compare: ''
+    }
+    $scope.questionNumber = 3;
   }
 
 
 
+
   $scope.predictReview = () => {
-    console.log("user", $scope.user);
-    $('.second-Rest').hide();
-    $('.tastes').hide();
+    if($scope.user.restaurant_to_compare === '') {
+      //inform them to select a restaurant
+      $scope.restaurantmessage2 = "You must select a restaurant to continue."
+      return
+    }
+    // console.log("user", $scope.user);
+    // $('.second-Rest').hide();
+    // $('.tastes').hide();
     getReviewsFactory.getReviewPrediction($scope.user)
     .then((data) => {
       if (data.reviews[0] === undefined) {
@@ -64,7 +79,7 @@ app.controller('formCtrl', function($scope, getRestaurantsFactory, getReviewsFac
       if (data.length === 0) {
         $scope.questionNumber = 7;
         $scope.errorMessage = "Believe it or not, but you're a unique snowflake, and your tastes are all your own.  Come back again soon, and hopefully your taste-twin will have recommendations for you the next time you stop through."
-          console.log("error", $scope.errorMessage);
+          // console.log("error", $scope.errorMessage);
           return;
       }
       $scope.questionNumber = 6;
@@ -85,6 +100,7 @@ app.controller('formCtrl', function($scope, getRestaurantsFactory, getReviewsFac
 
   $scope.loveOrHate = () => {
     $scope.questionNumber = 3;
+    userFactory.setUser($scope.user);
   }
 
   $scope.choosePredict = () => {
@@ -92,9 +108,9 @@ app.controller('formCtrl', function($scope, getRestaurantsFactory, getReviewsFac
   }
 
   $scope.back = () => {
-    console.log("Back button");
-    console.log("questionNumber", $scope.questionNumber)
-    // $destroy($scope.errorMessage)
+
+    $scope.restaurantmessage = ""
+    $scope.restaurantmessage2 =""
     $scope.questionNumber = 3;
   }
 
@@ -104,7 +120,10 @@ app.controller('formCtrl', function($scope, getRestaurantsFactory, getReviewsFac
     rating: '',
     restaurant_to_compare: ''
     }
+    $scope.restaurantmessage = ""
+    $scope.restaurantmessage2 =""
     $scope.questionNumber = 1;
+    userFactory.resetUser();
   }
 
 });

@@ -82,6 +82,7 @@
       <fieldset class="second-Rest" ng-if="questionNumber === 4">
         <div class="form-group">
             <label for="restaurant_to_compare"><h3>Enter the restaurant you'd like a review prediction for</h3></label>
+            <h2 class="bg-warning" ng-if="restaurantmessage2"> {{restaurantmessage2}}</h2>
             <select chosen
             data-placeholder-text-single="'Choose a restaurant'"
             no-results-text="'Sorry, that restaurant is not in our system yet.'"
@@ -91,7 +92,8 @@
               <option ng-repeat="restaurant in restaurants" value={{resaurant.id}}>{{restaurant.name}}</option> -->
           </select>
         </div>
-        <button type="submit" class="btn btn-success" ng-click="predictReview()">Predict My Review of Another Restaurant</button>
+        <button type="submit" class="btn btn-success" ng-click="predictReview()">Predict My Review</button>
+        <button type="button" class="btn btn-primary" ng-click="back()">Back</button>
 
 
     </form>
@@ -114,7 +116,7 @@
       <div class="container">
         <h1>Bummer!</h1>
         <p>{{errorMessage}}</p>
-        <p><a class="btn btn-primary" role="button" ng-click="back()">Try Again</a></p>
+        <!-- <p><a class="btn btn-primary" role="button" ng-click="back()">Try Again</a></p> -->
         <p><a class="btn btn-warning" href="#!/recommendations" role="button" ng-click="startOver()">Start Over</a>
   </div></p>
       </div>

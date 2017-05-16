@@ -1,7 +1,7 @@
 app.factory('getReviewsFactory', function($http){
   return {
     getReviewPrediction : (user) => {
-      //get all the products from api
+      //get all the reviewss from api
       let restaurant_id = user.restaurant_id;
       let rating = user.rating;
 
@@ -34,7 +34,7 @@ app.factory('getReviewsFactory', function($http){
       });//end of then
     }, //end of getAllRestaurants()
     getRecommendedRestaurants : (user) => {
-      //get all the products from api
+      //get all the reviews from api
       let restaurant_id = user.restaurant_id;
       let rating = user.rating;
       return $http

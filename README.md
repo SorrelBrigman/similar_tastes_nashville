@@ -10,15 +10,15 @@ The backend repo contains mockups, links to the trello board for planning and ad
 
 # technology used:
 
-HTML
-CSS
-JavaScript
-jQuery 3.2.1
-Bootstrap 3.3.7
-Angular 1.6.4
-Angular-Route 1.6.4
-Chosen 1.7.0
-Angular-Chosen-Localytics 1.6.0
+* HTML
+* CSS
+* JavaScript
+* jQuery 3.2.1
+* Bootstrap 3.3.7
+* Angular 1.6.4
+* Angular-Route 1.6.4
+* Chosen 1.7.0
+* Angular-Chosen-Localytics 1.6.0
 
 
 # Current App Features Include:
@@ -46,4 +46,4 @@ Angular-Chosen-Localytics 1.6.0
   Once the user has entered their main restaurant and the direction of their passions toward that restauarnt, all other recommendations and predictions will be based off of that baseline until the user either refreshes the page or clicks a "Start Over" button.
 
 
-# Contributor: Sorrel Brigman https://github.com/SorrelBrigman
+## Contributor: Sorrel Brigman https://github.com/SorrelBrigman

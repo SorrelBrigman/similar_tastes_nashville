@@ -1,12 +1,11 @@
-app.controller('formCtrl', function($scope, getRestaurantsFactory, getReviewsFactory, $timeout){
-  console.log("hello from formCtrl")
+app.controller('formCtrl', function($scope, getRestaurantsFactory, getReviewsFactory, $timeout, ){
+
 
       // $('.love-or-hate').hide();
       // $('.choose-type').hide();
       // $('.second-Rest').hide();
 
       $scope.questionNumber = 1;
-      console.log("questionNumber", $scope.questionNumber)
   getRestaurantsFactory.getAllRestaurants()
   .then((restaurants) => {
 
@@ -41,10 +40,8 @@ app.controller('formCtrl', function($scope, getRestaurantsFactory, getReviewsFac
     $('.tastes').hide();
     getReviewsFactory.getReviewPrediction($scope.user)
     .then((data) => {
-      console.log("reviews returned",data);
-
       if (data.reviews[0] === undefined) {
-        $scope.errorMessage = "We're sorry, but no one with similar tastes has been there yet.  Try it out, you'll be a trend setter."
+        $scope.errorMessage = "We're sorry, but no one with similar tastes has reviewed there yet.  Try it out, you'll be a trend setter."
           return;
       }
       $scope.reviewed = {
@@ -62,36 +59,38 @@ app.controller('formCtrl', function($scope, getRestaurantsFactory, getReviewsFac
     $('.tastes').hide();
     getReviewsFactory.getRecommendedRestaurants($scope.user)
     .then((data) => {
-      console.log("data from controller", data);
       if (data.length === 0) {
         $scope.errorMessage = "Believe it or not, but you're a unique snowflake, and your tastes are all your own.  Come back again soon, and hopefully your taste-twin will have recommendations for you the next time you stop through."
           return;
       }
       let sortedReviews = getReviewsFactory.sortByRestaurant(data);
-      $scope.filteredReviews = getReviewsFactory.removeDuplicates(sortedReviews, $scope.user.restaurant_id);
-      console.log("filteredReviews", $scope.filteredReviews);
+      let ratedReviews = getReviewsFactory.quantifyReviews(sortedReviews, $scope.user.restaurant_id);
+      $scope.filteredReviews = getReviewsFactory.sortByHighestRated(ratedReviews);
     })
   }
 
   $scope.gaveRestaurant = () => {
-    console.log("user info", $scope.user)
     if($scope.user.restaurant_id === '') {
       //inform them to select a restaurant
       $scope.restaurantmessage = "You must select a restaurant to start"
       return
     }
       $scope.questionNumber = 2;
-      console.log("questionNumber", $scope.questionNumber)
   }
 
   $scope.loveOrHate = () => {
     $scope.questionNumber = 3;
-    console.log("questionNumber", $scope.questionNumber)
   }
 
   $scope.choosePredict = () => {
     $scope.questionNumber = 4;
+  }
+
+  $scope.back = () => {
+    console.log("Back button");
     console.log("questionNumber", $scope.questionNumber)
+    // $destroy($scope.errorMessage)
+    $scope.questionNumber = 3;
   }
 
 });

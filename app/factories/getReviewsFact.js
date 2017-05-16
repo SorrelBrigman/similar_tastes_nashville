@@ -4,13 +4,13 @@ app.factory('getReviewsFactory', function($http){
       //get all the products from api
       let restaurant_id = user.restaurant_id;
       let rating = user.rating;
-      console.log("rating", user.rating)
+
       let restaurant_to_compare = user.restaurant_to_compare;
       return $http
       .get(`http://localhost:3000/api/v1/reviews/filtered?restaurant_id=${restaurant_id}&rating=${rating}&restaurant_to_compare=${restaurant_to_compare}`)
       //parse the return from api, just returning the data object
       .then((e)=>{
-        console.log("e in reviews factory", e)
+
         return e.data;
       })
       //turn the data object into an array
@@ -25,7 +25,7 @@ app.factory('getReviewsFactory', function($http){
           return (reviewTotal/(reviews.length + 1))
         }
         let averageReview =  findAverageReview(filteredReviews);
-        console.log("averageReview", parseInt(averageReview))
+
         let reviewResponse = {
           reviews: filteredReviews,
           averageRating: averageReview
@@ -58,6 +58,7 @@ app.factory('getReviewsFactory', function($http){
           return 1;
         return 0;
       })
+
       return reviews;
     },
     removeDuplicates : (reviews, restaurant) => {
@@ -71,11 +72,41 @@ app.factory('getReviewsFactory', function($http){
         else if (reviews[i].restaurant_id === restaurant){
 
         }else {
-        console.log(reviews[i]);
+
         uniqueRestaurants.push(reviews[i])
         }
       }
       return uniqueRestaurants
+    },
+    quantifyReviews : (reviews, restaurant) => {
+      let ratedRestaurants = []
+      // if (reviews[0].restaurant_id !== restaurant) {
+      //   uniqueRestaurants.push(reviews[0]);
+      // }
+      for(let i = 1; i < (reviews.length + 1); i++) {
+        if(reviews[i] === undefined) {
+
+        } else if(reviews[i].restaurant_id === reviews[i-1].restaurant_id) {
+          reviews[i].rating = reviews[i].rating + reviews[i-1].rating;
+        }
+        else if (reviews[i-1].restaurant_id === restaurant){
+
+        } else {
+        ratedRestaurants.push(reviews[i-1])
+        }
+      }
+      return ratedRestaurants
+    },
+    sortByHighestRated : (reviews) => {
+        reviews.sort((a,b) => {
+        if(a.rating > b.rating)
+          return -1;
+        if (a.rating < b.rating)
+          return 1;
+        return 0;
+      })
+
+      return reviews;
     }
 
 

@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <title>Similar Tastes Nashville</title>
   <link rel="stylesheet" type="text/css" href="lib/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="lib/chosen/chosen.css">
+  <link rel="stylesheet" type="text/css" href="styles/main.css">
 </head>
 <body>
 
@@ -20,10 +22,12 @@
 <!-- end of angular app -->
 
 
+  <script src="lib/jquery/dist/jquery.min.js"></script>
   <script src="lib/angular/angular.js"></script>
   <script src="lib/angular-route/angular-route.js"></script>
-  <script src="lib/jquery/dist/jquery.min.js"></script>
   <script src="lib/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="lib/chosen/chosen.jquery.js"></script>
+  <script src="lib/angular-chosen-localytics/dist/angular-chosen.js"></script>
 
   <script src="app/configAng.js"></script>
   <script src="app/main.js"></script>
@@ -32,6 +36,10 @@
   <script src="app/controllers/formCtrl.js"></script>
   <script src="app/controllers/homeCtrl.js"></script>
   <script src="app/controllers/restaurantCtrl.js"></script>
+
+  <script src="app/factories/getRestaurantsFact.js"></script>
+  <script src="app/factories/getReviewsFact.js"></script>
+  <script src="app/factories/userFact.js"></script>
 
 </body>
 </html>

@@ -1,5 +1,5 @@
 //assign the angular module to the var app
-var app = angular.module("similarTastesApp", ['ngRoute']);
+var app = angular.module("similarTastesApp", ['ngRoute', 'localytics.directives']);
 
 //configure "app" with routeProvider
 app.config(($routeProvider)=> {
@@ -11,13 +11,13 @@ app.config(($routeProvider)=> {
       //use the partial "home"
       templateUrl : "partials/home.html"
     })
-    .when("/input", {
+    .when("/recommendations", {
       // use the add product ctrl
       controller: "formCtrl",
       //use the partial "addProduct"
       templateUrl: "partials/form.html"
     })
-    .when("/restaurant", {
+    .when("/restaurants/:restaurant_id", {
       // use the add product ctrl
       controller: "restaurantCtrl",
       //use the partial "addProduct"

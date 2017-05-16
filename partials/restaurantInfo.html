@@ -1,1 +1,53 @@
-<h1>Restaurant Info</h1>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Similar Tastes Nashville</a>
+    </div>
+    <div id="navbar" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="#!/">Home</a></li>
+        <li><a href="#!/about">About</a></li>
+        <li><a href="#!/recommendations">Find Recommendations</a></li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div>
+</nav>
+
+<div class="container">
+
+  <div class="starter-template">
+    <h1>{{restaurant.name}}</h1>
+    <p class="lead">Type of food: {{restaurant.category_str_list}}<br>Price Range: {{restaurant.price_range}}</p>
+    <p>Nashville Neighborhood: {{restaurant.neighborhood_str_list}}</p>
+    <p>Address:
+      <br>{{restaurant.address_string}}
+      <br>{{restaurant.address_city}}, {{restaurant.address_state}}
+      <br>{{restaurant.address_zip}}
+    </p>
+    <p>Phone: {{restaurant.phone}}</p>
+    <p ng-if="restaurant.website">Website: <a target="_blank" href=http://{{restaurant.website}}>{{restaurant.website}}</a></p>
+
+    <h5>Hours</h5>
+    <p>Monday: {{restaurant.monday_hours}}</p>
+    <p>Tuesday: {{restaurant.tuesday_hours}}</p>
+    <p>Wednesday: {{restaurant.wednesday_hours}}</p>
+    <p>Thursday: {{restaurant.thursday_hours}}</p>
+    <p>Friday: {{restaurant.friday_hours}}</p>
+    <p>Saturday: {{restaurant.saturday_hours}}</p>
+    <p>Sunday: {{restaurant.sunday_hours}}</p>
+    <a class="btn btn-primary" href="#!/recommendations" role="button">Back</a>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <p class="text-muted text-left">Helping you find the best dining experience for you.</p>
+    <p class="pull-right"><a target="_blank" href="https://github.com/SorrelBrigman">© 2017 Copyright Sorrel Brigman</a></p>
+  </div>
+</footer>

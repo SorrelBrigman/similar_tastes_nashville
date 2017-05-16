@@ -41,6 +41,7 @@ app.controller('formCtrl', function($scope, getRestaurantsFactory, getReviewsFac
     getReviewsFactory.getReviewPrediction($scope.user)
     .then((data) => {
       if (data.reviews[0] === undefined) {
+        $scope.questionNumber = 7;
         $scope.errorMessage = "We're sorry, but no one with similar tastes has reviewed there yet.  Try it out, you'll be a trend setter."
           return;
       }
@@ -61,7 +62,9 @@ app.controller('formCtrl', function($scope, getRestaurantsFactory, getReviewsFac
     getReviewsFactory.getRecommendedRestaurants($scope.user)
     .then((data) => {
       if (data.length === 0) {
+        $scope.questionNumber = 7;
         $scope.errorMessage = "Believe it or not, but you're a unique snowflake, and your tastes are all your own.  Come back again soon, and hopefully your taste-twin will have recommendations for you the next time you stop through."
+          console.log("error", $scope.errorMessage);
           return;
       }
       $scope.questionNumber = 6;
@@ -93,6 +96,15 @@ app.controller('formCtrl', function($scope, getRestaurantsFactory, getReviewsFac
     console.log("questionNumber", $scope.questionNumber)
     // $destroy($scope.errorMessage)
     $scope.questionNumber = 3;
+  }
+
+  $scope.startOver = () => {
+    $scope.user = {
+    restaurant_id: '',
+    rating: '',
+    restaurant_to_compare: ''
+    }
+    $scope.questionNumber = 1;
   }
 
 });

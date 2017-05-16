@@ -74,7 +74,11 @@
         <button type="submit" class="btn btn-primary" ng-click="getRecommendations()">Recommend Restaurants I'd like</button>
 
       <button type="button" class="btn btn-success" ng-click="choosePredict()">Predict My Review of Another Restaurant</button>
+
+      <p><a class="btn btn-warning pull-right" href="#!/recommendations" role="button" ng-click="startOver()">Start Over</a>
       </fieldset>
+
+
       <fieldset class="second-Rest" ng-if="questionNumber === 4">
         <div class="form-group">
             <label for="restaurant_to_compare"><h3>Enter the restaurant you'd like a review prediction for</h3></label>
@@ -95,22 +99,24 @@
   </div>
 
 
-  <div class="jumbotron" ng-if=reviewed>
+  <div class="jumbotron" ng-if="reviewed && questionNumber === 5">
       <div class="container">
         <h1>{{reviewed.name}}</h1>
         <p>Based on {{reviewed.number}} users with similar tastes, the average review for {{reviewed.name}} is {{reviewed.averageRating}} out of 5 stars.</p>
         <p><a class="btn btn-primary" href=#!/restaurants/{{reviewed.id}} role="button">{{reviewed.name}} Details</a></p>
       </div>
-
+      <button type="submit" class="btn btn-primary" ng-click="back()">Back</button>
     </div>
 
 </div>
 
-  <div class="jumbotron" ng-if=errorMessage>
+  <div class="jumbotron" ng-if="questionNumber === 7">
       <div class="container">
         <h1>Bummer!</h1>
         <p>{{errorMessage}}</p>
-        <p><a class="btn btn-primary" href="#!/recommendations" role="button">Try Again</a></p>
+        <p><a class="btn btn-primary" role="button" ng-click="back()">Try Again</a></p>
+        <p><a class="btn btn-warning" href="#!/recommendations" role="button" ng-click="startOver()">Start Over</a>
+  </div></p>
       </div>
 
     </div>
@@ -118,7 +124,7 @@
 </div>
 
 
-  <div class="jumbotron" ng-if=filteredReviews>
+  <div class="jumbotron" ng-if="filteredReviews  && questionNumber===6">
       <div class="container">
         <h3>Here are some restaurants folks with similar tastes have enjoyed:</h3>
         <div ng-repeat="review in filteredReviews | limitTo:5">

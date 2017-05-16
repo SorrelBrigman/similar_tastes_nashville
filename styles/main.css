@@ -3,6 +3,8 @@ body {
   /* Margin bottom by footer height */
   margin-bottom: 60px;
 }
+
+
 .starter-template {
   padding: 40px 15px;
   text-align: center;
@@ -25,4 +27,10 @@ html {
 
 .jumbotron {
   padding-top: 50px;
+}
+
+.homeImage {
+  position: absolute;
+  top: 50px;
+  z-index: -1;
 }

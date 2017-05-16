@@ -23,10 +23,10 @@
 
   <div class="starter-template tastes" ng-if="questionNumber <= 4">
     <h1>Declare Your Tastes</h1>
-    <p class="lead">Tell us about a restaurant you feel passionately about.<br> We'll find users with similar tastes to hook you up with meaningful reviews and recommendations</p>
+    <p class="lead">Tell us about a restaurant you feel passionately about.<br> We'll find users with similar tastes to give you meaningful reviews and recommendations</p>
   </div>
   <div>
-    <form >
+    <form class="row">
 
       <!-- <fieldset>
         <div class="form-group">
@@ -37,9 +37,9 @@
       </fieldset> -->
 
       <fieldset class="first-restaurant" ng-if="questionNumber === 1">
-        <div class="form-group">
-          <h2 class="bg-warning" ng-if="restaurantmessage"> {{restaurantmessage}}</h2>
+        <div class="form-group  restaurant1">
           <label for="restaurants"><h3>Select a restaurant you feel passionately about:</h3></label>
+          <h2 class="bg-warning text-warning" ng-if="restaurantmessage"> {{restaurantmessage}}</h2>
           <select chosen
             data-placeholder-text-single="'Choose a restaurant'"
             no-results-text="'Sorry, that restaurant is not in our system yet.'"
@@ -47,11 +47,14 @@
             name="restaurant_id"
             id="restaurant_id"
             ng-model="user.restaurant_id"
-            ng-options="restaurant.id as restaurant.name for restaurant in restaurants" value={{restaurant.id}}>
+            ng-options="restaurant.id as restaurant.name + '  (' + restaurant.address_string + ')' for restaurant in restaurants" value={{restaurant.id}}>
           <!--   <option disabled selected>Select a Restaurant</option>
             <option ng-options="restaurant.id as restaurant.name for restaurant in restaurants" value={{resaurant.id}}>{{restaurant.name}}</option> -->
           </select>
-          <button type="button" class="btn btn-primary" ng-click="gaveRestaurant()">Set Restaurant</button>
+
+
+              <button type="button" class="btn btn-primary col-md-3 restaurantButton" ng-click="gaveRestaurant()">Set Restaurant</button>
+          </div>
       </fieldset>
 
       <fieldset class="love-or-hate" ng-if="questionNumber === 2">
@@ -70,24 +73,24 @@
         </div>
       </fieldset>
 
-      <fieldset class="choose-type" ng-if="questionNumber === 3">
-        <button type="submit" class="btn btn-primary" ng-click="getRecommendations()">Recommend Restaurants I'd like</button>
+      <fieldset class="choose-type col-md-6 col-md-offset-3" ng-if="questionNumber === 3">
+        <button type="submit" class="btn btn-primary btn-block" ng-click="getRecommendations()">Recommend Restaurants I'd like</button>
 
-      <button type="button" class="btn btn-success" ng-click="choosePredict()">Predict My Review of Another Restaurant</button>
+      <button type="button" class="btn btn-success btn-block" ng-click="choosePredict()">Predict My Review of Another Restaurant</button>
 
-      <p><a class="btn btn-warning pull-right" href="#!/recommendations" role="button" ng-click="startOver()">Start Over</a>
+      <p class="text-center"><a class="btn btn-warning startOver" href="#!/recommendations" role="button" ng-click="startOver()">Start Over</a>
       </fieldset>
 
 
       <fieldset class="second-Rest" ng-if="questionNumber === 4">
         <div class="form-group">
             <label for="restaurant_to_compare"><h3>Enter the restaurant you'd like a review prediction for</h3></label>
-            <h2 class="bg-warning" ng-if="restaurantmessage2"> {{restaurantmessage2}}</h2>
+            <h2 class="text-warning" ng-if="restaurantmessage2"> {{restaurantmessage2}}</h2>
             <select chosen
             data-placeholder-text-single="'Choose a restaurant'"
             no-results-text="'Sorry, that restaurant is not in our system yet.'"
             class="form-control"
-            ng-model="user.restaurant_to_compare" name="restaurant_to_compare" id="restaurant_to_compare" ng-options="restaurant.id as restaurant.name for restaurant in restaurants" value={{resaurant.id}}>
+            ng-model="user.restaurant_to_compare" name="restaurant_to_compare" id="restaurant_to_compare" ng-options="restaurant.id as restaurant.name  + '  (' + restaurant.address_string + ')'  for restaurant in restaurants" value={{resaurant.id}}>
               <!-- <option disabled selected>Select a Restaurant</option>
               <option ng-repeat="restaurant in restaurants" value={{resaurant.id}}>{{restaurant.name}}</option> -->
           </select>
@@ -104,6 +107,9 @@
   <div class="jumbotron" ng-if="reviewed && questionNumber === 5">
       <div class="container">
         <h1>{{reviewed.name}}</h1>
+        <h2 class="text-success text-center" ng-if="reviewed.averageRating >= 4">We think you'll like it!    😀</h2>
+        <h2 class="text-warning text-center" ng-if="reviewed.averageRating === 3">Eh. It could go either way.  😐</h2>
+        <h2 class="text-danger text-center" ng-if="reviewed.averageRating <= 2">We think you won't like.  😞</h2>
         <p>Based on {{reviewed.number}} users with similar tastes, the average review for {{reviewed.name}} is {{reviewed.averageRating}} out of 5 stars.</p>
         <p><a class="btn btn-primary" href=#!/restaurants/{{reviewed.id}} role="button">{{reviewed.name}} Details</a></p>
       </div>
@@ -126,21 +132,31 @@
 </div>
 
 
-  <div class="jumbotron" ng-if="filteredReviews  && questionNumber===6">
+  <div class="" ng-if="filteredReviews  && questionNumber===6">
       <div class="container">
-        <h3>Here are some restaurants folks with similar tastes have enjoyed:</h3>
-        <div ng-repeat="review in filteredReviews | limitTo:5">
+        <h2>Here are the top 5 restaurants folks with similar tastes have enjoyed:</h2>
+        <!-- <input type="text" class="form-control" placeholder="Search Restaurants" aria-describedby="basic-addon1" ng-model="searchRest"> -->
+        <!-- <div ng-repeat="review in filteredReviews | limitTo:5 | filter: searchRest">
           <p>{{review.name}} <a class="btn btn-primary" href=#!/restaurants/{{review.restaurant_id}} role="button">More Info</a></p>
         </div>
-        <button type="submit" class="btn btn-primary" ng-click="back()">Back</button>
-      </div>
+        <button type="submit" class="btn btn-warning" ng-click="back()">Back</button>
+      </div> -->
+      <table class="table">
+        <tbody>
+          <tr ng-repeat="review in filteredReviews | limitTo:5 | filter: searchRest">
+            <td><h4>{{review.name}}</h4></td>
+            <td><a class="btn btn-primary" href=#!/restaurants/{{review.restaurant_id}} role="button">More Info</a></td>
+          </tr>
+        </tbody>
+      </table>
+      <button type="submit" class="btn btn-warning" ng-click="back()">Back</button>
     </div>
 
 </div>
 
 <footer class="footer">
   <div class="container">
-    <p class="text-muted">Helping you find the best dining experience for you.</p>
-    <p class="pull-right">© 2017 Copyright Sorrel Brigman</p>
+    <p class="text-muted text-left">Helping you find the best dining experience for you.</p>
+    <p class="pull-right"><a target="_blank" href="https://github.com/SorrelBrigman">© 2017 Copyright Sorrel Brigman</a></p>
   </div>
 </footer>

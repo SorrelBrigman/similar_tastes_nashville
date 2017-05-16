@@ -23,7 +23,7 @@
 
   <div class="starter-template tastes" ng-if="questionNumber <= 4">
     <h1>Declare Your Tastes</h1>
-    <p class="lead">Tell us about a restaurant you feel passionately about.<br> We'll find users with similar tastes to hook you up with meaningful reviews and recommendations</p>
+    <p class="lead">Tell us about a restaurant you feel passionately about.<br> We'll find users with similar tastes to give you meaningful reviews and recommendations</p>
   </div>
   <div>
     <form >
@@ -87,7 +87,7 @@
             data-placeholder-text-single="'Choose a restaurant'"
             no-results-text="'Sorry, that restaurant is not in our system yet.'"
             class="form-control"
-            ng-model="user.restaurant_to_compare" name="restaurant_to_compare" id="restaurant_to_compare" ng-options="restaurant.id as restaurant.name for restaurant in restaurants" value={{resaurant.id}}>
+            ng-model="user.restaurant_to_compare" name="restaurant_to_compare" id="restaurant_to_compare" ng-options="restaurant.id as restaurant.name  + '  (' + restaurant.address_string + ')'  for restaurant in restaurants" value={{resaurant.id}}>
               <!-- <option disabled selected>Select a Restaurant</option>
               <option ng-repeat="restaurant in restaurants" value={{resaurant.id}}>{{restaurant.name}}</option> -->
           </select>
@@ -104,9 +104,9 @@
   <div class="jumbotron" ng-if="reviewed && questionNumber === 5">
       <div class="container">
         <h1>{{reviewed.name}}</h1>
-        <h2 class="text-success" ng-if="reviewed.averageRating >= 4">We think you'll like it!    😀</h2>
-        <h2 class="text-warning" ng-if="reviewed.averageRating === 3">Eh. It could go either way.  😐</h2>
-        <h2 class="text-danger" ng-if="reviewed.averageRating <= 2">We think you won't like.  😞</h2>
+        <h2 class="text-success text-center" ng-if="reviewed.averageRating >= 4">We think you'll like it!    😀</h2>
+        <h2 class="text-warning text-center" ng-if="reviewed.averageRating === 3">Eh. It could go either way.  😐</h2>
+        <h2 class="text-danger text-center" ng-if="reviewed.averageRating <= 2">We think you won't like.  😞</h2>
         <p>Based on {{reviewed.number}} users with similar tastes, the average review for {{reviewed.name}} is {{reviewed.averageRating}} out of 5 stars.</p>
         <p><a class="btn btn-primary" href=#!/restaurants/{{reviewed.id}} role="button">{{reviewed.name}} Details</a></p>
       </div>
@@ -131,8 +131,9 @@
 
   <div class="jumbotron" ng-if="filteredReviews  && questionNumber===6">
       <div class="container">
-        <h3>Here are some restaurants folks with similar tastes have enjoyed:</h3>
-        <div ng-repeat="review in filteredReviews | limitTo:5">
+        <h3>Here are the top 5 restaurants folks with similar tastes have enjoyed:</h3>
+        <!-- <input type="text" class="form-control" placeholder="Search Restaurants" aria-describedby="basic-addon1" ng-model="searchRest"> -->
+        <div ng-repeat="review in filteredReviews | limitTo:5 | filter: searchRest">
           <p>{{review.name}} <a class="btn btn-primary" href=#!/restaurants/{{review.restaurant_id}} role="button">More Info</a></p>
         </div>
         <button type="submit" class="btn btn-primary" ng-click="back()">Back</button>

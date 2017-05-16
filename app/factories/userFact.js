@@ -1,7 +1,7 @@
-app.factory('getRestaurantsFactory', function($http){
+app.factory('userFactory', function(){
   return {
-    getAllRestaurants : () => {
-      //get all the restaurantss from api
+    getUser : () => {
+      //get all the products from api
       return $http
       .get('http://localhost:3000/api/v1/restaurants')
       //parse the return from api, just returning the data object
@@ -15,7 +15,7 @@ app.factory('getRestaurantsFactory', function($http){
         return allRestaurants;
       });//end of then
     }, //end of getAllRestaurants()
-    getSingleRestaurant : (id) => {
+    setUser : (id) => {
       //get single restaurant info
       return $http
       .get(`http://localhost:3000/api/v1/restaurants/${id}`)

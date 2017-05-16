@@ -104,6 +104,7 @@ app.controller('formCtrl', function($scope, getRestaurantsFactory, getReviewsFac
     rating: '',
     restaurant_to_compare: ''
     }
+    $scope.restaurantmessage = ""
     $scope.questionNumber = 1;
   }
 

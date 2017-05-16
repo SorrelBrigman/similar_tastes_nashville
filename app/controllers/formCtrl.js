@@ -1,4 +1,4 @@
-app.controller('formCtrl', function($scope, getRestaurantsFactory, getReviewsFactory, $timeout, $destroy){
+app.controller('formCtrl', function($scope, getRestaurantsFactory, getReviewsFactory, $timeout, ){
 
 
       // $('.love-or-hate').hide();

@@ -104,6 +104,9 @@
   <div class="jumbotron" ng-if="reviewed && questionNumber === 5">
       <div class="container">
         <h1>{{reviewed.name}}</h1>
+        <h2 class="text-success" ng-if="reviewed.averageRating >= 4">We think you'll like it!    😀</h2>
+        <h2 class="text-warning" ng-if="reviewed.averageRating === 3">Eh. It could go either way.  😐</h2>
+        <h2 class="text-danger" ng-if="reviewed.averageRating <= 2">We think you won't like.  😞</h2>
         <p>Based on {{reviewed.number}} users with similar tastes, the average review for {{reviewed.name}} is {{reviewed.averageRating}} out of 5 stars.</p>
         <p><a class="btn btn-primary" href=#!/restaurants/{{reviewed.id}} role="button">{{reviewed.name}} Details</a></p>
       </div>

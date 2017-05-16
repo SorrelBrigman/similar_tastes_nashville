@@ -38,8 +38,8 @@
 
       <fieldset class="first-restaurant" ng-if="questionNumber === 1">
         <div class="form-group  restaurant1">
-          <h2 class="bg-warning" ng-if="restaurantmessage"> {{restaurantmessage}}</h2>
           <label for="restaurants"><h3>Select a restaurant you feel passionately about:</h3></label>
+          <h2 class="bg-warning text-warning" ng-if="restaurantmessage"> {{restaurantmessage}}</h2>
           <select chosen
             data-placeholder-text-single="'Choose a restaurant'"
             no-results-text="'Sorry, that restaurant is not in our system yet.'"
@@ -85,7 +85,7 @@
       <fieldset class="second-Rest" ng-if="questionNumber === 4">
         <div class="form-group">
             <label for="restaurant_to_compare"><h3>Enter the restaurant you'd like a review prediction for</h3></label>
-            <h2 class="bg-warning" ng-if="restaurantmessage2"> {{restaurantmessage2}}</h2>
+            <h2 class="text-warning" ng-if="restaurantmessage2"> {{restaurantmessage2}}</h2>
             <select chosen
             data-placeholder-text-single="'Choose a restaurant'"
             no-results-text="'Sorry, that restaurant is not in our system yet.'"
@@ -132,22 +132,31 @@
 </div>
 
 
-  <div class="jumbotron" ng-if="filteredReviews  && questionNumber===6">
+  <div class="" ng-if="filteredReviews  && questionNumber===6">
       <div class="container">
-        <h3>Here are the top 5 restaurants folks with similar tastes have enjoyed:</h3>
+        <h2>Here are the top 5 restaurants folks with similar tastes have enjoyed:</h2>
         <!-- <input type="text" class="form-control" placeholder="Search Restaurants" aria-describedby="basic-addon1" ng-model="searchRest"> -->
-        <div ng-repeat="review in filteredReviews | limitTo:5 | filter: searchRest">
+        <!-- <div ng-repeat="review in filteredReviews | limitTo:5 | filter: searchRest">
           <p>{{review.name}} <a class="btn btn-primary" href=#!/restaurants/{{review.restaurant_id}} role="button">More Info</a></p>
         </div>
         <button type="submit" class="btn btn-warning" ng-click="back()">Back</button>
-      </div>
+      </div> -->
+      <table class="table">
+        <tbody>
+          <tr ng-repeat="review in filteredReviews | limitTo:5 | filter: searchRest">
+            <td><h4>{{review.name}}</h4></td>
+            <td><a class="btn btn-primary" href=#!/restaurants/{{review.restaurant_id}} role="button">More Info</a></td>
+          </tr>
+        </tbody>
+      </table>
+      <button type="submit" class="btn btn-warning" ng-click="back()">Back</button>
     </div>
 
 </div>
 
 <footer class="footer">
   <div class="container">
-    <p class="text-muted">Helping you find the best dining experience for you.</p>
-    <p class="pull-right">© 2017 Copyright Sorrel Brigman</p>
+    <p class="text-muted text-left">Helping you find the best dining experience for you.</p>
+    <p class="pull-right"><a target="_blank" href="https://github.com/SorrelBrigman">© 2017 Copyright Sorrel Brigman</a></p>
   </div>
 </footer>

@@ -26,7 +26,7 @@
     <p class="lead">Tell us about a restaurant you feel passionately about.<br> We'll find users with similar tastes to give you meaningful reviews and recommendations</p>
   </div>
   <div>
-    <form >
+    <form class="row">
 
       <!-- <fieldset>
         <div class="form-group">
@@ -37,7 +37,7 @@
       </fieldset> -->
 
       <fieldset class="first-restaurant" ng-if="questionNumber === 1">
-        <div class="form-group">
+        <div class="form-group  restaurant1">
           <h2 class="bg-warning" ng-if="restaurantmessage"> {{restaurantmessage}}</h2>
           <label for="restaurants"><h3>Select a restaurant you feel passionately about:</h3></label>
           <select chosen
@@ -51,7 +51,10 @@
           <!--   <option disabled selected>Select a Restaurant</option>
             <option ng-options="restaurant.id as restaurant.name for restaurant in restaurants" value={{resaurant.id}}>{{restaurant.name}}</option> -->
           </select>
-          <button type="button" class="btn btn-primary" ng-click="gaveRestaurant()">Set Restaurant</button>
+
+
+              <button type="button" class="btn btn-primary col-md-3 restaurantButton" ng-click="gaveRestaurant()">Set Restaurant</button>
+          </div>
       </fieldset>
 
       <fieldset class="love-or-hate" ng-if="questionNumber === 2">
@@ -70,12 +73,12 @@
         </div>
       </fieldset>
 
-      <fieldset class="choose-type" ng-if="questionNumber === 3">
-        <button type="submit" class="btn btn-primary" ng-click="getRecommendations()">Recommend Restaurants I'd like</button>
+      <fieldset class="choose-type col-md-6 col-md-offset-3" ng-if="questionNumber === 3">
+        <button type="submit" class="btn btn-primary btn-block" ng-click="getRecommendations()">Recommend Restaurants I'd like</button>
 
-      <button type="button" class="btn btn-success" ng-click="choosePredict()">Predict My Review of Another Restaurant</button>
+      <button type="button" class="btn btn-success btn-block" ng-click="choosePredict()">Predict My Review of Another Restaurant</button>
 
-      <p><a class="btn btn-warning pull-right" href="#!/recommendations" role="button" ng-click="startOver()">Start Over</a>
+      <p class="text-center"><a class="btn btn-warning startOver" href="#!/recommendations" role="button" ng-click="startOver()">Start Over</a>
       </fieldset>
 
 
@@ -136,7 +139,7 @@
         <div ng-repeat="review in filteredReviews | limitTo:5 | filter: searchRest">
           <p>{{review.name}} <a class="btn btn-primary" href=#!/restaurants/{{review.restaurant_id}} role="button">More Info</a></p>
         </div>
-        <button type="submit" class="btn btn-primary" ng-click="back()">Back</button>
+        <button type="submit" class="btn btn-warning" ng-click="back()">Back</button>
       </div>
     </div>
 

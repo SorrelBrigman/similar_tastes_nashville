@@ -24,7 +24,7 @@ app.controller('formCtrl', function($scope, getRestaurantsFactory, getReviewsFac
 
   let currentUser = userFactory.getUser()
 
-  console.log("the currentUser", currentUser);
+  // console.log("the currentUser", currentUser);
 
   if (currentUser.set === false) {
     $scope.user = {
@@ -50,9 +50,9 @@ app.controller('formCtrl', function($scope, getRestaurantsFactory, getReviewsFac
       $scope.restaurantmessage2 = "You must select a restaurant to continue."
       return
     }
-    console.log("user", $scope.user);
-    $('.second-Rest').hide();
-    $('.tastes').hide();
+    // console.log("user", $scope.user);
+    // $('.second-Rest').hide();
+    // $('.tastes').hide();
     getReviewsFactory.getReviewPrediction($scope.user)
     .then((data) => {
       if (data.reviews[0] === undefined) {
@@ -79,7 +79,7 @@ app.controller('formCtrl', function($scope, getRestaurantsFactory, getReviewsFac
       if (data.length === 0) {
         $scope.questionNumber = 7;
         $scope.errorMessage = "Believe it or not, but you're a unique snowflake, and your tastes are all your own.  Come back again soon, and hopefully your taste-twin will have recommendations for you the next time you stop through."
-          console.log("error", $scope.errorMessage);
+          // console.log("error", $scope.errorMessage);
           return;
       }
       $scope.questionNumber = 6;
@@ -108,8 +108,7 @@ app.controller('formCtrl', function($scope, getRestaurantsFactory, getReviewsFac
   }
 
   $scope.back = () => {
-    console.log("Back button");
-    console.log("questionNumber", $scope.questionNumber)
+
     $scope.restaurantmessage = ""
     $scope.restaurantmessage2 =""
     $scope.questionNumber = 3;

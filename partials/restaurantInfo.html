@@ -30,7 +30,7 @@
       <br>{{restaurant.address_city}}, {{restaurant.address_state}}
       <br>{{restaurant.address_zip}}
     </p>
-    <p>Phone: {{restaurant.phone}}</p>
+    <p>Phone: <a href=tel:+{{restaurant.phone}}>{{restaurant.phone}}</a></p>
     <p ng-if="restaurant.website">Website: <a target="_blank" href=http://{{restaurant.website}}>{{restaurant.website}}</a></p>
 
     <h5>Hours</h5>
@@ -41,7 +41,7 @@
     <p>Friday: {{restaurant.friday_hours}}</p>
     <p>Saturday: {{restaurant.saturday_hours}}</p>
     <p>Sunday: {{restaurant.sunday_hours}}</p>
-    <a class="btn btn-primary" href="#!/recommendations" role="button">Back</a>
+    <a class="btn btn-warning" href="#!/recommendations" role="button">Back</a>
   </div>
 </div>
 

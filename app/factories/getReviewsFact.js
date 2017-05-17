@@ -7,7 +7,7 @@ app.factory('getReviewsFactory', function($http){
 
       let restaurant_to_compare = user.restaurant_to_compare;
       return $http
-      .get(`http://localhost:3000/api/v1/reviews/filtered?restaurant_id=${restaurant_id}&rating=${rating}&restaurant_to_compare=${restaurant_to_compare}`)
+      .get(`https://similar-tastes-nashville-api.herokuapp.com/api/v1/reviews/filtered?restaurant_id=${restaurant_id}&rating=${rating}&restaurant_to_compare=${restaurant_to_compare}`)
       //parse the return from api, just returning the data object
       .then((e)=>{
 
@@ -38,7 +38,7 @@ app.factory('getReviewsFactory', function($http){
       let restaurant_id = user.restaurant_id;
       let rating = user.rating;
       return $http
-      .get(`http://localhost:3000/api/v1/reviews?restaurant_id=${restaurant_id}&rating=${rating}`)
+      .get(`https://similar-tastes-nashville-api.herokuapp.com/api/v1/reviews?restaurant_id=${restaurant_id}&rating=${rating}`)
       //parse the return from api, just returning the data object
       .then((e)=>{
         return e.data;

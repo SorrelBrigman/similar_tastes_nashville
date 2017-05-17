@@ -30,7 +30,7 @@
       <br>{{restaurant.address_city}}, {{restaurant.address_state}}
       <br>{{restaurant.address_zip}}
     </p>
-    <p>Phone: {{restaurant.phone}}</p>
+    <p>Phone: <a href=tel:+{{restaurant.phone}}>{{restaurant.phone}}</a></p>
     <p ng-if="restaurant.website">Website: <a target="_blank" href=http://{{restaurant.website}}>{{restaurant.website}}</a></p>
 
     <h5>Hours</h5>
@@ -41,13 +41,13 @@
     <p>Friday: {{restaurant.friday_hours}}</p>
     <p>Saturday: {{restaurant.saturday_hours}}</p>
     <p>Sunday: {{restaurant.sunday_hours}}</p>
-    <a class="btn btn-primary" href="#!/recommendations" role="button">Back</a>
+    <a class="btn btn-warning" href="#!/recommendations" role="button">Back</a>
   </div>
 </div>
 
 <footer class="footer">
   <div class="container">
-    <p class="text-muted text-left">Helping you find the best dining experience for you.</p>
+    <p class="text-muted text-left">Helping you find the best dining experiences.</p>
     <p class="pull-right"><a target="_blank" href="https://github.com/SorrelBrigman">© 2017 Copyright Sorrel Brigman</a></p>
   </div>
 </footer>

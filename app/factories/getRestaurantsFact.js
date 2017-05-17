@@ -3,7 +3,7 @@ app.factory('getRestaurantsFactory', function($http){
     getAllRestaurants : () => {
       //get all the restaurantss from api
       return $http
-      .get('http://localhost:3000/api/v1/restaurants')
+      .get('https://similar-tastes-nashville-api.herokuapp.com/api/v1/restaurants')
       //parse the return from api, just returning the data object
       .then((e)=>{
 
@@ -18,7 +18,7 @@ app.factory('getRestaurantsFactory', function($http){
     getSingleRestaurant : (id) => {
       //get single restaurant info
       return $http
-      .get(`http://localhost:3000/api/v1/restaurants/${id}`)
+      .get(`https://similar-tastes-nashville-api.herokuapp.com/api/v1/restaurants/${id}`)
       .then((e) => {
         return e.data
       })

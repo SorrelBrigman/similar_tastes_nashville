@@ -3,7 +3,7 @@
 
 App concept: A restaurant recommendation app that will take user input and return only reviews from similar users.
 
-This is the user interface for Similar Taste API, the repo can be found here:
+This is the user interface for Similar Taste API, the repo for the backend can be found here:
 https://github.com/SorrelBrigman/backend_capstone
 
 The backend repo contains mockups, links to the trello board for planning and additional notes about the backend of the site.
